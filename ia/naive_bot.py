@@ -1,16 +1,19 @@
 import sys
 import os
+import statistics
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'game'))
 
 from game_engine import FlappyBirdEnv
 
 def naive_action(state):
-    bird_above_gap_top = state[3]
-    if bird_above_gap_top < 0:
-        return 0
-    return 1
+    bird_position_to_gap_top = state[3]
+    bird_position_to_gap_bottom = state[4]
+    velocity = state[1]
+    if bird_position_to_gap_top > bird_position_to_gap_bottom and velocity > 0.4:
+       return 1
+    return 0
 
-def run(n_games=5):
+def run(n_games=50):
     env = FlappyBirdEnv()
     scores = []
 
@@ -23,6 +26,7 @@ def run(n_games=5):
         scores.append(env.score)
         print(f"Partie {i + 1} : score = {env.score}")
 
+    print(f"Max : {max(scores)}, Min : {min(scores)}, Ecart-type : {statistics.stdev(scores):.2f}")
     print(f"\nScore moyen sur {n_games} parties : {sum(scores) / len(scores):.1f}")
 
 if __name__ == '__main__':
