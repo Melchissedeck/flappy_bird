@@ -6,10 +6,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'game'))
 from game_engine import FlappyBirdEnv
 
 def naive_action(state):
-    bird_position_to_gap_top = state[3]
-    bird_position_to_gap_bottom = state[4]
+    bird_distance_to_gap_top = state[3]
+    bird_distance_to_gap_bottom = state[4]
     velocity = state[1]
-    if bird_position_to_gap_top > bird_position_to_gap_bottom and velocity > 0.4:
+    if bird_distance_to_gap_top > bird_distance_to_gap_bottom and velocity > 0.4:
        return 1
     return 0
 

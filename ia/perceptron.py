@@ -8,8 +8,8 @@ from game_engine import FlappyBirdEnv
 
 class Perceptron:
     def __init__(self, n_inputs=5):
-        self.weights = np.random.uniform(-1, 1, n_inputs)
-        self.bias = np.random.uniform(-1, 1)
+        self.weights = [2,2,2,5,2]
+        self.bias = -4.1
 
     def forward(self, x):
         z = np.dot(self.weights, x) + self.bias
