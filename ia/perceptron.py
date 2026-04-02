@@ -19,11 +19,12 @@ class Perceptron:
 
 def run(n_games=10):
     env = FlappyBirdEnv()
-    net = Perceptron()
     scores = []
+
     best_score = -1
     best_weights = None
     best_bias = None
+    
     for _ in range(100):
         net = Perceptron()
         state = env.reset()
